@@ -91,26 +91,34 @@ dealCards.start('Player 1', 'Player 2');
 
 // have 2 players compare cards
 class Game {
-  constructor()
- 
-  compareCards() {
+  constructor() {  
     let player1Score = 0;
     let player2Score = 0;
     let playersScore = [];
 
     for (let x = 0; x < this.players[0].playerCards.length; x++) {
-      if (this.players[0].playerCards[2] < this.players[1].playerCards[2]) {
+      if (this.players[0].playerCards < this.players[1].playerCards) {
          player2Score++ 
 
-        } else if (this.players[0].playerCards[2] > this.players[1].playerCards[2]) {
+        } else if (this.players[0].playerCards > this.players[1].playerCards) {
           player1Score++
         }
-    
-    }
-  playersScore.push(player1Score, player2Score) 
-        return playersScore;
+      }
+    playersScore.push(player1Score, player2Score) 
+    return (playersScore);
   }
+
+  // function to show winner and results
+  displayWinner(score) {
+    if (score[0] > score[1]) {
+        alert('Game over. Bill wins!')
+    } else alert('Game over. Ted wins!')
+ } 
 }
+
+let newGame = new Game();
+newGame.start();
+
 
 
 
