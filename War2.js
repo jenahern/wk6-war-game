@@ -128,14 +128,21 @@ class Card {
       //  jen able to isolate rank on card
       // jen adding loop to get all ranks to compare
       {
-        for(let ii = 0; ii < p1.playerCards.length; ii++) {
-          this.playerScore += p1.playerCards[ii]; {
+
             if (p1card.rank > p2card.rank) {
-              console.log("Player 1 Wins"); 
+              console.log("Player 1 Wins Round"); 
 
             } else {   
-              console.log("Player 2 Wins");
+              console.log("Player 2 Wins Round");
             }
+            for(let ii = 0; ii < p1.playerCards.length; ii++) {
+              this.playerScore += p1.playerCards[ii]; {
+                if (p1card.rank > p2card.rank) {
+                  console.log("Player 1 Wins Game"); 
+    
+                } else {   
+                  console.log("Player 2 Wins Game");
+                }
         }
       }
     }
