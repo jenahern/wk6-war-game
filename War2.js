@@ -1,153 +1,166 @@
 class Card {
-    constructor(suit, value, rank) {
-      this.suit = suit;
-      this.value = value;
-      this.rank = rank;
-    }
+  constructor(suit, value, rank) {
+    this.suit = suit;
+    this.value = value;
+    this.rank = rank;
   }
-  
-  class Deck {
-    constructor() {
-      this.cards = [];
-    }
-    createDeck() {
-      const suits = ["♠️", "♣️", "♥️", "♦️"];
-      const values = [
-        "A",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "J",
-        "Q",
-        "K",
-      ];
-      const ranks = [14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-      for (let i = 0; i < suits.length; i++) {
-        for (let n = 0; n < values.length; n++) {
-          this.cards.push(new Card(suits[i], values[n], ranks[n]));
-        }
-      }
-    }
-  
-    shuffleDeck() {
-      for (let c = this.cards.length - 1; c > 0; c--) {
-        let top = Math.floor(Math.random() * c);
-        let lastCard = this.cards[c];
-        this.cards[top] = this.cards[c];
-        this.cards[c] = lastCard;
+}
+
+class Deck {
+  constructor() {
+    this.cards = [];
+  }
+  createDeck() {
+    const suits = ["♠️", "♣️", "♥️", "♦️"];
+    const values = [
+      "A",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "J",
+      "Q",
+      "K",
+    ];
+    const ranks = [14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+    for (let i = 0; i < suits.length; i++) {
+      for (let n = 0; n < values.length; n++) {
+        this.cards.push(new Card(suits[i], values[n], ranks[n]));
       }
     }
   }
-  
-  let newDeck = new Deck();
-  newDeck.createDeck();
-  newDeck.shuffleDeck();
-  console.log("Test Created Deck:");
-  console.log(newDeck);
-  console.log("");
-  //Testing to ensure new deck is created and shuffled
-  // console.log(newDeck);
-  // deck is created and will shuffle cards!!
-  
-  // Create Players
-  class Player {
-    constructor(playerName) {
-      //kristina passed playername instead of id
-      this.playerName = playerName; //Kristina changed this line of code
-      this.playerCards = [];
-      this.playerScore = 0;
-    }
-  }
-  
-  //testing to ensure that we can create a new instance of player for p1 and p2. their hands get populated in deal class
-  console.log(
-    "Test instance of players (they currently have an empty deck until deal deck is called):"
-  );
-  let p1 = new Player("p1");
-  let p2 = new Player("p2");
-  console.log(p1, p2);
-  console.log("");
-  
-  // Create Deal
-  class Deal {
-    constructor() {
-      // this.readyDeck = []; --Kristina removed this line of code for now. you can uncomment it if it gets used
-      this.players = [];
-    }
-    start() {
-      this.players.push(p1);
-      this.players.push(p2);
-      let d = new Deck();
-      d.createDeck();
-      d.shuffleDeck();
-      this.players[0].playerCards = d.cards.slice(0, 26);
-      this.players[1].playerCards = d.cards.slice(26, 52);
-    }
-  }
-  
-  //testing Deck class to ensure player 1/2 have name, cards, starting score and gets pushed to players array
-  let testDeal = new Deal();
-  testDeal.start();
-  console.log("Printing a test deal. p1 and p2 now have 26 cards", testDeal);
-  
-  // Deal Cards to start game
-  let dealCards = new Deal();
-  dealCards.start("Player 1", "Player 2");
-  console.log("");
-  // console.log(dealCards.players);
-  
-  // 2 Players have shuffled hand of 26 cards each confirmed by console log
-  
-  // 2 Arrays of 26 cards.  Need to compare the rank of player 1 card "0" in array to player 2 card "0"
-  // higer value rank wins point - point gets push to point array(?)
-  
-  // have 2 players compare cards
-  class Game {
-    constructor() {
-      //kristina comment: possibly create a array for war players and push p1 and p1 to array
-      this.warPlayers = [];
-      
-    }
-  
-    //kristina - method to start game
-    start() {
-      this.warPlayers.push(p1, p2);
-  
-      console.log("Inside Game.Start", this.warPlayers);     
 
-      let p1card = p1.playerCards.shift();
-      let p2card = p2.playerCards.shift();    
-  
-      console.log("Round 1" , p1card.rank, "vs" , p2card.rank); 
-      //  jen able to isolate rank on card
-      // jen adding loop to get all ranks to compare
-      {
-
-            if (p1card.rank > p2card.rank) {
-              console.log("Player 1 Wins Round"); 
-
-            } else {   
-              console.log("Player 2 Wins Round");
-            }
-            for(let ii = 0; ii < p1.playerCards.length; ii++) {
-              this.playerScore += p1.playerCards[ii]; {
-                if (p1card.rank > p2card.rank) {
-                  console.log("Player 1 Wins Game"); 
-    
-                } else {   
-                  console.log("Player 2 Wins Game");
-                }
-        }
-      }
+  shuffleDeck() {
+    for (let c = this.cards.length - 1; c > 0; c--) {
+      let top = Math.floor(Math.random() * c);
+      let lastCard = this.cards[c];
+      this.cards[top] = this.cards[c];
+      this.cards[c] = lastCard;
     }
   }
 }
 
-  let newGame = new Game();
-  newGame.start();
+let newDeck = new Deck();
+newDeck.createDeck();
+newDeck.shuffleDeck();
+//Testing to ensure new deck is created and shuffled
+// console.log(newDeck);
+// deck is created and will shuffle cards!!
+
+// Create Players
+class Player {
+  constructor(playerName) {
+    this.playerName = playerName;
+    this.playerCards = [];
+    this.playerScore = 0;
+  }
+}
+
+let p1 = new Player("p1");
+let p2 = new Player("p2");
+
+// Create Deal with 26 Cards in 2 arrays
+class Deal {
+  constructor() {
+    this.players = [];
+  }
+  start() {
+    this.players.push(p1);
+    this.players.push(p2);
+    let d = new Deck();
+    d.createDeck();
+    d.shuffleDeck();
+    this.players[0].playerCards = d.cards.slice(0, 26);
+    this.players[1].playerCards = d.cards.slice(26, 52);
+  }
+}
+
+//testing Deck class to ensure player 1/2 have name, cards, starting score and gets pushed to players array
+let testDeal = new Deal();
+testDeal.start();
+// console.log("Printing a test deal. p1 and p2 now have 26 cards", testDeal);
+
+//create Game class to run 26 instances of comparing 0 position card in each Players hand
+class Game {
+  constructor() {
+    this.warPlayers = [];
+  }
+  start() {
+    this.warPlayers.push(p1, p2);
+    alert(
+      `Welcome to War! 2 NPC's go head to head in 26 Rounds to see who has the highest score.`
+    );
+
+    // for loop created to iterate over each players hand
+    for (let i = 0; i < 26; i++) {
+      this.playerCards += this.warPlayers[i];
+      {
+        let p1card = p1.playerCards.shift();
+        let p2card = p2.playerCards.shift();
+
+        if (p1card.rank > p2card.rank) {
+          alert(`
+          Player 1 card: ${p1card.value} ${p1card.suit} score: ${p1card.rank}
+          Player 2 card: ${p2card.value} ${p2card.suit} score: ${p2card.rank}
+          Player 1 Wins Round
+          
+          Player 1 Total Score - ${p1.playerScore} 
+          Player 2 Total Score - ${p2.playerScore}`);
+          p1.playerScore += 1;
+        } else if (p1card.rank < p2card.rank) {
+          alert(`
+          Player 1 card: ${p1card.value} ${p1card.suit} score: ${p1card.rank}
+          Player 2 card: ${p2card.value} ${p2card.suit} score: ${p2card.rank} 
+          Player 2 Wins Round
+
+          Player 1 Total Score - ${p1.playerScore} 
+          Player 2 Total Score - ${p2.playerScore}`);
+          p2.playerScore += 1;
+        } else {
+          alert(`
+          Player 1 card: ${p1card.value} ${p1card.suit} score: ${p1card.rank}
+          Player 2 card: ${p2card.value} ${p2card.suit} score: ${p2card.rank} 
+          This Round is a Tie.  No Points Awarded.
+
+          Player 1 Total Score - ${p1.playerScore} 
+          Player 2 Total Score - ${p2.playerScore}
+          `);
+        }
+      }
+    }
+  }
+  // created a function to alert winner and total score of each Player for Game.
+  displayWinner() {
+    if (p1.playerScore < p2.playerScore) {
+      alert(`Congratulations! Player 1 Wins!
+
+      Total Score - 
+      Player 1 - ${p1.playerScore} 
+      Player 2 - ${p2.playerScore}
+      `);
+    } else if (p1.playerScore > p2.playerScore) {
+      alert(`Congratulations! Player 2 Wins!
+
+      Total Score - 
+      Player 1 - ${p1.playerScore} 
+      Player 2 - ${p2.playerScore}
+      `);
+    } else {
+      alert(`Draw. No Winner, Please Play Again.
+
+      Total Score - 
+      Player 1 - ${p1.playerScore} 
+      Player 2 - ${p2.playerScore}
+      `);
+    }
+  }
+}
+
+let newGame = new Game();
+newGame.start();
+newGame.displayWinner();
