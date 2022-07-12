@@ -136,14 +136,14 @@ class Game {
   }
   // created a function to alert winner and total score of each Player for Game.
   displayWinner() {
-    if (p1.playerScore < p2.playerScore) {
+    if (p1.playerScore > p2.playerScore) {
       alert(`Congratulations! Player 1 Wins!
 
       Total Score - 
       Player 1 - ${p1.playerScore} 
       Player 2 - ${p2.playerScore}
       `);
-    } else if (p1.playerScore > p2.playerScore) {
+    } else if (p1.playerScore < p2.playerScore) {
       alert(`Congratulations! Player 2 Wins!
 
       Total Score - 
